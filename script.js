@@ -1,4 +1,3 @@
-//your JS code here. If required.
 const output = document.getElementById("output")
 
 const userInput = document.getElementById("text")
@@ -8,12 +7,17 @@ const submitBtn = document.getElementById("btn")
 
 submitBtn.addEventListener('click', onSubmit);
 
-function onSubmit(){
-    return new Promise(resolve => {
-        setTimeout(()=>{
-            output.innerText = userInput.value
-        }, delay)
-        submitBtn.removeEventListener('click', onSubmit);
-    })
 
+function resPromise(){
+    const text = userInput.value
+    return new Promise(resolve => {
+        setTimeout(()=> {
+            resolve(text)
+        }, delay)
+    })
+}
+
+async function onSubmit(){
+    const res = await resPromise()
+    return res
 }
